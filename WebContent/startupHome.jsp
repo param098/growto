@@ -1,0 +1,61 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Startup Home</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<%
+	/* Checking the user credentials */
+		String userType = (String)session.getAttribute("usertype");
+		String username = (String)session.getAttribute("username");
+		String password = (String)session.getAttribute("password");
+	
+		if(userType== null || !userType.equals("startupOwner")){
+			
+			response.sendRedirect("loginFirst.jsp");
+			
+		}
+		
+		if(username == null || password==null){
+	
+			response.sendRedirect("loginFirst.jsp");
+		}	
+		
+	%>
+
+	<%@ include file="OwnerHeader.html"%>
+
+	<div class="products" style="background-color: #E6F9E6;">
+
+		<div class="tab" align="center">
+			<form>
+				<button type="submit" formaction="OwnerViewProduct.jsp">View
+					products</button>
+				<br>
+				<br>
+				<button type="submit" formaction="OwnerAddProduct.jsp">Add
+					products</button>
+				<br>
+				<br>
+				<button type="submit" formaction="OwnerRemoveProduct.jsp">Remove
+					Products</button>
+				<br>
+				<br>
+				<button type="submit" formaction="OwnerUpdateProductById.jsp">Update
+					Products</button>
+				<br>
+				<br>
+			</form>
+		</div>
+	</div>
+
+	<%@ include file="footer.html"%>
+</body>
+</html>
